@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>¿Me conoces?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="blobs" aria-hidden="true"><span></span><span></span><span></span></div>
+
+  <main class="card">
+    <!-- Pantalla de inicio -->
+    <section id="inicio" class="pantalla activa">
+      <div class="emoji-grande">🤔</div>
+      <h1>¿Me conoces?</h1>
+      <p class="sub">Responde 10 preguntas sobre mí.<br>Si fallas una, <strong>vuelves al inicio</strong>.</p>
+      <button id="btn-empezar" class="btn-principal">Empezar</button>
+    </section>
+
+    <!-- Pantalla de juego -->
+    <section id="juego" class="pantalla">
+      <div class="barra-top">
+        <span id="contador">Pregunta 1 de 10</span>
+        <span id="intentos">Intentos: 1</span>
+      </div>
+      <div class="progreso"><div id="progreso-relleno"></div></div>
+
+      <h2 id="pregunta"></h2>
+      <div id="opciones" class="opciones"></div>
+      <p id="mensaje" class="mensaje" aria-live="polite"></p>
+    </section>
+
+    <!-- Pantalla final -->
+    <section id="final" class="pantalla">
+      <div class="emoji-grande">🎉</div>
+      <h1>¡Lo lograste!</h1>
+      <p class="sub">Respondiste las 10 preguntas.<br>Sí me conoces de verdad.</p>
+      <p id="resumen" class="resumen"></p>
+      <button id="btn-reiniciar" class="btn-principal">Jugar otra vez</button>
+    </section>
+  </main>
+
+  <canvas id="confeti"></canvas>
+  <script src="script.js"></script>
+</body>
+</html>

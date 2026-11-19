@@ -1,0 +1,80 @@
+:root{
+  --fondo:#1b1340;
+  --card:#ffffff;
+  --texto:#2a1f5c;
+  --morado:#7c4dff;
+  --rosa:#ff4d8d;
+  --amarillo:#ffc93c;
+  --verde:#22c58b;
+  --rojo:#ff4d4d;
+  --opA:#ff6b6b; --opB:#4dabf7; --opC:#a66bff; --opD:#2ed3a0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  min-height:100vh;display:grid;place-items:center;padding:16px;
+  font-family:'Nunito',sans-serif;color:var(--texto);
+  background:linear-gradient(135deg,#1b1340,#3b1d7a 55%,#6a1b9a);
+  overflow-x:hidden;
+}
+.blobs span{position:fixed;border-radius:50%;filter:blur(70px);opacity:.55;z-index:0;animation:flota 12s ease-in-out infinite alternate}
+.blobs span:nth-child(1){width:320px;height:320px;background:var(--rosa);top:-80px;left:-80px}
+.blobs span:nth-child(2){width:360px;height:360px;background:var(--amarillo);bottom:-120px;right:-100px;animation-delay:-4s}
+.blobs span:nth-child(3){width:260px;height:260px;background:#00d4ff;top:40%;left:60%;animation-delay:-8s}
+@keyframes flota{to{transform:translate(40px,-30px) scale(1.15)}}
+
+.card{
+  position:relative;z-index:1;width:min(560px,100%);
+  background:var(--card);border-radius:28px;padding:32px 26px;
+  box-shadow:0 24px 60px rgba(0,0,0,.4);border-top:8px solid var(--amarillo);
+}
+.pantalla{display:none;text-align:center}
+.pantalla.activa{display:block;animation:entra .4s ease}
+@keyframes entra{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+h1{font-family:'Fredoka',sans-serif;font-size:clamp(2.2rem,8vw,3rem);color:var(--morado);margin-bottom:10px}
+h2{font-family:'Fredoka',sans-serif;font-size:clamp(1.4rem,5vw,1.8rem);margin:22px 0}
+.sub{font-size:1.1rem;line-height:1.5;margin-bottom:24px}
+.emoji-grande{font-size:4.5rem;margin-bottom:6px;animation:bota 1.6s ease-in-out infinite}
+@keyframes bota{50%{transform:translateY(-10px) rotate(-6deg)}}
+
+.btn-principal{
+  font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.3rem;color:#fff;
+  background:linear-gradient(135deg,var(--morado),var(--rosa));
+  border:0;border-radius:999px;padding:14px 38px;cursor:pointer;
+  box-shadow:0 8px 0 #4b2cb3;transition:transform .12s,box-shadow .12s;
+}
+.btn-principal:hover{transform:translateY(-2px)}
+.btn-principal:active{transform:translateY(6px);box-shadow:0 2px 0 #4b2cb3}
+
+.barra-top{display:flex;justify-content:space-between;font-weight:800;font-size:.95rem}
+.progreso{height:14px;background:#ece6ff;border-radius:999px;margin-top:10px;overflow:hidden}
+#progreso-relleno{height:100%;width:0;background:linear-gradient(90deg,var(--verde),var(--amarillo));border-radius:999px;transition:width .5s ease}
+
+.opciones{display:grid;gap:12px}
+.opcion{
+  display:flex;align-items:center;gap:14px;text-align:left;width:100%;
+  font-family:'Nunito',sans-serif;font-weight:800;font-size:1.1rem;color:#fff;
+  border:0;border-radius:16px;padding:14px 16px;cursor:pointer;
+  box-shadow:0 5px 0 rgba(0,0,0,.25);transition:transform .12s,filter .12s;
+}
+.opcion:hover:not(:disabled){transform:translateY(-2px);filter:brightness(1.08)}
+.opcion:focus-visible,.btn-principal:focus-visible{outline:4px solid var(--amarillo);outline-offset:3px}
+.opcion .letra{display:grid;place-items:center;flex:none;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.3);font-family:'Fredoka',sans-serif}
+.opcion[data-l="A"]{background:var(--opA)}
+.opcion[data-l="B"]{background:var(--opB)}
+.opcion[data-l="C"]{background:var(--opC)}
+.opcion[data-l="D"]{background:var(--opD)}
+.opcion:disabled{cursor:default}
+.opcion.correcta{background:var(--verde);animation:salto .5s}
+.opcion.incorrecta{background:var(--rojo);animation:tiembla .5s}
+.opcion:disabled:not(.correcta):not(.incorrecta){filter:grayscale(.6) opacity(.6)}
+@keyframes salto{40%{transform:scale(1.05)}}
+@keyframes tiembla{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+
+.mensaje{min-height:28px;margin-top:18px;font-weight:800;font-size:1.05rem}
+.mensaje.ok{color:var(--verde)}
+.mensaje.mal{color:var(--rojo)}
+.resumen{font-weight:800;color:var(--rosa);margin-bottom:22px}
+
+#confeti{position:fixed;inset:0;pointer-events:none;z-index:5}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
